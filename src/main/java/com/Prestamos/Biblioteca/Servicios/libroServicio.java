@@ -26,27 +26,39 @@ public class libroServicio {
     }
 
 
-    public Optional<Libro> buscarLibro(String isbn){
+    public Libro buscarLibro(String isbn){
 
-        return repositorio.findById(isbn);
+        return repositorio.findById(isbn).get();
     }
 
     public ArrayList<Libro> buscarAutor(String autor){
         return repositorio.findByAutor(autor);
     }
 
-    public Libro agregarLibro(Libro libro){
-        repositorio.save(libro);
-        return libro;
-    }
+    public boolean agregarLibro(Libro libro){
 
-    public String actualizarLibro(Libro libro){
+        if(repositorio.findById(libro.getIsbn()).isPresent()) {
+            return false;
+        }else {
+            repositorio.save(libro);
+            return true;
+        }
+
+        }
+
+
+
+    /*public String actualizarLibro(Libro libro){
         if(buscarLibro(libro.getIsbn()).isPresent()){
             repositorio.save(libro);
             return "Libro Actualizado Exitosamente";
         }else{
             return "El Libro a modificar no existe";
         }
+    }*/
+
+    public Libro actualizarLibro(Libro libro){
+        return repositorio.save(libro);
     }
 
     public String actualizarEditorial(String isbn, String editorial){
@@ -63,14 +75,17 @@ public class libroServicio {
         }
     }
 
-    public String eliminarLibro(String isbn){
+    /*public String eliminarLibro(String isbn){
         if(buscarLibro(isbn).isPresent()){
             repositorio.deleteById(isbn);
             return "Libro Eliminado Exitosamente";
         }else{
             return "El Libro a eliminar no existe";
         }
-    }
+    }*/
+    public void eliminarLibro(String isbn){
+        repositorio.deleteById(isbn);
 
+    }
 
 }

@@ -3,6 +3,8 @@ package com.Prestamos.Biblioteca.Controlador;
 import com.Prestamos.Biblioteca.Entidades.Libro;
 import com.Prestamos.Biblioteca.Servicios.libroServicio;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -18,27 +20,29 @@ public class libroControlador {
         this.servicio = servicio;
     }
 
-    @PostMapping("/AgregarLibro")
-    public String agregarLibro(@RequestBody Libro libro){
-        return this.servicio.agregarLibro(libro).toString();
-    }
 
-    @GetMapping("/ListarLibro")
+    /*@PostMapping("/AgregarLibro")
+    public String agregarLibro(@RequestBody Libro libro){
+      return this.servicio.agregarLibro(libro).toString();
+    }*/
+
+   /* @GetMapping("/ListarLibro")
     public List<Libro> listar(){
         return this.servicio.listarLibros();
     }
 
     @GetMapping("/BuscarLibro/{isbn}")
     public Optional<Libro> buscarLibro(@PathVariable("isbn") String isbn){
+
         return servicio.buscarLibro(isbn);
     }
 
     @GetMapping("/porAutor/{dato}")
     public ArrayList<Libro> porAutor(@PathVariable("dato") String autor){
        return servicio.buscarAutor(autor);
-    }
+    }*/
 
-    @PutMapping("/ActualizarLibro")
+   /* @PutMapping("/ActualizarLibro")
     public String actualizarLibro(@RequestBody Libro libro){
         return this.servicio.actualizarLibro(libro);
     }
@@ -52,6 +56,6 @@ public class libroControlador {
     public String eliminarLibro(@PathVariable("isbn") String isbn){
 
         return servicio.eliminarLibro(isbn);
-    }
+    }*/
 
 }

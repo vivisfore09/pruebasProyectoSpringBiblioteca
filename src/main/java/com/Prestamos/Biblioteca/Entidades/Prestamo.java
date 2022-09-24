@@ -1,10 +1,12 @@
 package com.Prestamos.Biblioteca.Entidades;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name="Prestamo")
@@ -30,6 +32,7 @@ public class Prestamo {
     public void prePersist(){
         this.fecha= new Date();
     }
+
 
     public Prestamo(Integer id_prestamo, Libro libro, Date fecha) {
         this.id_prestamo = id_prestamo;
@@ -73,6 +76,8 @@ public class Prestamo {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+
 
 
     @Override
